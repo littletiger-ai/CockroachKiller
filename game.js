@@ -61,12 +61,12 @@ function init() {
     updateLivesUI();
     
     // 输入事件
-    window.addEventListener('mousemove', e => {
+    const handleMove = (x, y) => {
         if (isGameOver) return;
-        slipper.setPosition(e.clientX, e.clientY);
-    });
-    
-    window.addEventListener('mousedown', e => {
+        slipper.setPosition(x, y);
+    };
+
+    const handleInput = (x, y) => {
         if (isGameOver) {
             // 点击重启逻辑已在 gameOver 中处理，这里防止误触
             return;
@@ -74,14 +74,39 @@ function init() {
 
         if (!isGameRunning) return; // 没开始游戏时不响应点击
 
+        // 触摸时也要移动拖鞋到点击位置
+        slipper.setPosition(x, y);
+
+        const hit = slipper.hit();
+        if (hit) {
+            audioCtrl.playHit(); // 播放打击音效
+            checkHit(x, y);
+        }
+    };
+
+    // 鼠标事件
+    window.addEventListener('mousemove', e => {
+        handleMove(e.clientX, e.clientY);
+    });
+    
+    window.addEventListener('mousedown', e => {
         if (e.button === 0) { // 左键
-            const hit = slipper.hit();
-            if (hit) {
-                audioCtrl.playHit(); // 播放打击音效
-                checkHit(e.clientX, e.clientY);
-            }
+            handleInput(e.clientX, e.clientY);
         }
     });
+
+    // 触摸事件
+    window.addEventListener('touchmove', e => {
+        e.preventDefault(); // 防止滚动
+        const touch = e.touches[0];
+        handleMove(touch.clientX, touch.clientY);
+    }, { passive: false });
+
+    window.addEventListener('touchstart', e => {
+        e.preventDefault(); // 防止模拟鼠标点击
+        const touch = e.touches[0];
+        handleInput(touch.clientX, touch.clientY);
+    }, { passive: false });
 
     // 开始按钮事件
     startBtn.addEventListener('click', startGame);

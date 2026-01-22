@@ -121,6 +121,42 @@ body, html {
     transform: scale(1.05);
 }
 
-#start-btn:active {
-    transform: scale(0.95);
+/* 移动端适配 */
+@media (max-width: 768px) {
+    #start-screen {
+        flex-direction: column; /* 竖向布局 */
+    }
+
+    .start-left {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    #start-screen h1 {
+        font-size: 40px;
+    }
+
+    #start-screen p.subtitle {
+        font-size: 16px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .instructions {
+        width: 80%;
+        font-size: 14px;
+    }
+
+    #start-btn {
+        padding: 10px 30px;
+        font-size: 20px;
+    }
+
+    #ui-layer {
+        font-size: 16px;
+        padding: 5px;
+        gap: 10px;
+        top: 10px;
+        left: 10px;
+    }
 }
