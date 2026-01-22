@@ -1,0 +1,126 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #e8e8e8; /* 地板颜色 */
+    cursor: none; /* 隐藏默认鼠标，使用自定义拖鞋 */
+    user-select: none;
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.05s; /* 用于震动效果 */
+}
+
+/* 红色闪烁遮罩 */
+#flash-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 50;
+    transition: opacity 0.1s;
+}
+
+#lives {
+    color: #e53935;
+    letter-spacing: 2px;
+}
+
+#ui-layer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-family: "Microsoft YaHei", sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    pointer-events: none; /* 让点击穿透到 canvas */
+    background: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    gap: 20px;
+    z-index: 10;
+}
+
+#start-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: row; /* 改为横向布局 */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: "Microsoft YaHei", sans-serif;
+    z-index: 100;
+    cursor: default; /* 恢复默认鼠标 */
+}
+
+.start-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+}
+
+#start-screen h1 {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: #FF7043;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+#start-screen p.subtitle {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.instructions {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    width: 300px;
+}
+
+.instructions p {
+    font-size: 16px; /* 字体改小 */
+    margin: 5px 0; /* 间距改小 */
+    line-height: 1.4;
+}
+
+#start-btn {
+    padding: 15px 40px;
+    font-size: 28px;
+    background-color: #FF7043;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.1s, background-color 0.2s;
+    font-family: inherit;
+    font-weight: bold;
+    margin-top: 20px; /* 增加一点顶部间距 */
+}
+
+#start-btn:hover {
+    background-color: #F4511E;
+    transform: scale(1.05);
+}
+
+#start-btn:active {
+    transform: scale(0.95);
+}

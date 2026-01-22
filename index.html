@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打蟑螂游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="flash-overlay"></div>
+        <div id="ui-layer">
+            <div id="lives-board">生命: <span id="lives">❤❤❤</span></div>
+            <div id="score-board">分数: <span id="score">0</span></div>
+            <div id="time-board">时间: <span id="time">0</span>s</div>
+        </div>
+        <div id="start-screen">
+            <div class="start-left">
+                <h1>打蟑螂模拟器</h1>
+                <p class="subtitle">点击屏幕消灭蟑螂，不要放过任何一只！</p>
+                <button id="start-btn">开始游戏</button>
+            </div>
+            <div class="instructions">
+                <p>🟤 普通蟑螂 +1分</p>
+                <p>🔴 高级蟑螂 +5分 (3血)</p>
+                <p>🟡 蟑螂国王 +10分 (5血，召唤小弟)</p>
+                <p>🔵 冰冻蟑螂 +2分 (减速)</p>
+                <p>🟢 治愈蟑螂 +1分 (回血)</p>
+                <p>🌈 彩虹蟑螂 +5分 (+10秒)</p>
+                <p>⚫ 炸弹蟑螂 勿碰！ (扣血)</p>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="game.js"></script>
+</body>
+</html>
