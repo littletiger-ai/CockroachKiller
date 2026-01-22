@@ -110,6 +110,11 @@ function init() {
 
     // 开始按钮事件
     startBtn.addEventListener('click', startGame);
+    // 移动端兼容：startBtn 也需要 touchstart 触发，否则可能无反应
+    startBtn.addEventListener('touchstart', (e) => {
+        e.preventDefault(); // 防止触发 click
+        startGame();
+    }, { passive: false });
     
     // 初始化时也调用一次 loop 来绘制静态画面（如拖鞋）
     requestAnimationFrame(loop);
